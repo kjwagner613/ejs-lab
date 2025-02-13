@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= restaurant.name %></title>
+  </head>
+  <body>
+    <%- include('./partials/nav') %>
+    <h1>Home Page</h1>
+    <h2>Welcome to <%= restaurant.name %></h2>
+    <p>Address: <%= restaurant.address %></p>
+    <p>Phone: <%= restaurant.phone %></p>
+    <p>Status: <%= restaurant.isOpen ? "Open" : "Closed" %></p>
+
+    <h3>Menu</h3>
+    <ul>
+      <% restaurant.menu.forEach(item => { %>
+      <li>
+        <h4><%= item.name %> - $<%= item.price %></h4>
+        <p>Rating: <%= item.rating %> stars</p>
+        <p>Category: <%= item.category %></p>
+        <p><%= item.details %></p>
+      </li>
+      <% }) %>
+    </ul>
+  </body>
+</html>
