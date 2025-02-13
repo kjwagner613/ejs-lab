@@ -1,8 +1,6 @@
-
-
 const express = require("express");
-const app = express();
 
+const app = express();
 const RESTAURANT = {
   name: "The Green Byte Bistro",
   isOpen: true,
@@ -56,23 +54,24 @@ const RESTAURANT = {
     },
   ],
 };
-
 app.set("view engine", "ejs");
-
 app.get("/", (req, res) => {
   res.render("home", { restaurant: RESTAURANT });
 });
-
-app.get('/menu', (req, res) => {
-  res.render('menu', { title: 'Menu', restaurant: RESTAURANT });
+app.get("/menu", (req, res) => {
+  res.render("menu", { title: "Menu", restaurant: RESTAURANT });
 });
-
-app.get('/category/:category', (req, res) => {
+app.get("/category/:category", (req, res) => {
   const category = req.params.category;
-  const filteredMenuItems = RESTAURANT.menu.filter(item => item.category === category);
-  res.render('category', { title: `Category: ${category.charAt(0).toUpperCase() + category.slice(1)}`, menuItems: filteredMenuItems, category: category });
+  const filteredMenuItems = RESTAURANT.menu.filter(
+    (item) => item.category === category
+  );
+  res.render("category", {
+    title: `Category: ${category.charAt(0).toUpperCase() + category.slice(1)}`,
+    menuItems: filteredMenuItems,
+    category: category,
+  });
 });
-
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
